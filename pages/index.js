@@ -30,12 +30,12 @@ export default function Home() {
     return elem.name === value
   }
 
-  function elemButtonClick() {
-    setElemArray((prevState) => ({
-      ...prevState,
-      elemArray: options.find(findElement) }))
-    console.log(value, elemArray);
-  };
+  // function elemButtonClick() {
+  //   setElemArray((prevState) => ({
+  //     ...prevState,
+  //     elemArray: options.find(findElement) }))
+  //   console.log(value, elemArray);
+  // };
 
   return (
     <div>
@@ -78,10 +78,10 @@ export default function Home() {
                 ))}
              
               </select>
-              <button className="px-5 py-3 rounded-md text-sm font-medium text-gray-700 border border-gray-300 shadow-sm hover:text-indigo-400 hover:border-indigo-300 hover:ring hover:ring-indigo-200 hover:ring-opacity-50"
+              {/* <button className="px-5 py-3 rounded-md text-sm font-medium text-gray-700 border border-gray-300 shadow-sm hover:text-indigo-400 hover:border-indigo-300 hover:ring hover:ring-indigo-200 hover:ring-opacity-50"
                 onClick={elemButtonClick}>
                 Filter
-              </button>
+              </button> */}
             </label>           
           </div>
           
