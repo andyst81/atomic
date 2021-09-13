@@ -1,11 +1,21 @@
+import {useState} from 'react'
+import Image from 'next/image'
+
 const Hero = ({ results: query }) => {
+
   return (
     <div>
-        {query.map((q, index) => (
-            <div className="container mx-auto" key={index}>
-              <div className="md:w-1/2 p-4">
+        {query.map((element, index) => (            
+            <div className="container mx-auto flex flex-wrap" key={index}>
+              {/* <h1 className='text-2xl align-center'>{element[1].Element}</h1> */}
+              {element.map((q, index) => (
+              <div key={index} className="lg:w-1/3 md:w-1/2 p-4">
                 <div className="p-6 rounded-lg border border-grey-50">
-                  <img className="rounded-full w-full object-cover object-center mb-6" src={"https://ipfs.io/ipfs/" + q.Image} alt="hero/minion image" />
+                  <Image className="rounded-full w-full object-cover object-center mb-6" 
+                    src={"https://ipfs.blockfrost.dev/ipfs/" + q.Image} 
+                    height='400vw'
+                    width='400vw'
+                    alt={q.Name} />
                   <h3 className="tracking-widest text-blue-400 text-xl text-center font-medium title-font">{q.Name}</h3><br/>
                   <table>
                     <tbody>
@@ -57,20 +67,22 @@ const Hero = ({ results: query }) => {
                   </table>
                 </div>
               </div>
+              ))}
             </div>
-        ))}
+          ))}
     </div>
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context, pagination) {
   const { id } = context.query
-  const res = await fetch(`http://localhost:3000/api/heroes/${id}`)
+  const page = pagination
+  const res = await fetch(`http://localhost:3000/api/elements/${id}`)
   const json = await res.json()
-  const token = [json]
+  const tokens = [json]
   return {
       props: {
-          results: token,
+          results: tokens,
       },
   }
 }
