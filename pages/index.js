@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Header from './components/header'
 import Card from './components/card'
 import Footer from './components/footer'
+import {options} from './components/options'
 
 export default function Home() {
 

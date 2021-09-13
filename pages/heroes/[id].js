@@ -5,7 +5,7 @@ const Hero = ({ results: query }) => {
             <div className="container mx-auto" key={index}>
               <div className="md:w-1/2 p-4">
                 <div className="p-6 rounded-lg border border-grey-50">
-                  <img className="rounded-full w-full object-cover object-center mb-6" src={"https://ipfs.io/ipfs/" + q.Image} alt="hero/minion image" />
+                  <img className="rounded-full w-full object-cover object-center mb-6" src={"https://ipfs.blockfrost.dev/ipfs/" + q.Image} alt="hero/minion image" />
                   <h3 className="tracking-widest text-blue-400 text-xl text-center font-medium title-font">{q.Name}</h3><br/>
                   <table>
                     <tbody>
