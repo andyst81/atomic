@@ -1,37 +1,4 @@
-// Limit users to return per page
-const getTokens = limit => {
-  const refinedTokens = []
-  for (let i = 0; i < limit; i++) {
-    refinedTokens.push(Aluminium[i])
-  }
-  return refinedTokens
-}
-
-export default function handler(req, res) {
-  const curPage = req.query.page || 1
-  // Display 30 users per page load
-  const perPage = 15
-
-  try {
-    const totalTokens = Aluminium.length
-    const refinedTokens = getTokens(perPage * curPage)
-
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'application/json')
-    res.end(
-      JSON.stringify({
-        message: 'Fetched Tokens',
-        tokens: refinedTokens,
-        curPage: curPage,
-        maxPage: Math.ceil(totalTokens / perPage),
-      })
-    )
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const Aluminium =  [
+export default function handler (req, res) { res.status(200).json( [
 {"ID": "2358", "Name": "Atomic Hero #2358", "Element": "Aluminium", "Group": "13", "Background": "'Volcano', 'Day'", "Frame": "White Frame", "Image": "QmXRdMym3oWS1yCEmrmHQrKE7AoTBGN6gXvBe1fzKxXUdD", "Left_Item": "None", "Right_Item": "Puddle", "Flavor": "None", "Stance": "Standing", "Variation": "Aluminium 1", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "32 / 3742 (0.86%)", "frame_conc": "1203 / 3742 (32.15%)", "left_conc": "2099 / 3742 (56.09%)", "right_conc": "167 / 3742 (4.46%)", "flav_conc": "FALSE", "stance_conc": "85 / 145 (58.62%)", "var_conc": "85 / 145 (58.62%)"},
 {"ID": "2359", "Name": "Atomic Hero #2359", "Element": "Aluminium", "Group": "13", "Background": "'Desert', 'Day'", "Frame": "White Frame", "Image": "QmQ6ofXkCQq6Hw1XZULBu9b53HCFAuvxYnTJhk74EkL9PN", "Left_Item": "None", "Right_Item": "None", "Flavor": "None", "Stance": "Sleeping", "Variation": "Aluminium 2", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "72 / 3742 (1.92%)", "frame_conc": "1203 / 3742 (32.15%)", "left_conc": "2099 / 3742 (56.09%)", "right_conc": "2099 / 3742 (56.09%)", "flav_conc": "FALSE", "stance_conc": "56 / 145 (38.62%)", "var_conc": "56 / 145 (38.62%)"},
 {"ID": "2360", "Name": "Atomic Hero #2360", "Element": "Aluminium", "Group": "13", "Background": "'Salty Plain', 'Day'", "Frame": "Black Frame", "Image": "QmP854s6zEHhGFSVbHqH79gRJN1u6oyZC7vNUPrjDspukd", "Left_Item": "None", "Right_Item": "Puddle", "Flavor": "None", "Stance": "Sleeping", "Variation": "Aluminium 2", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "65 / 3742 (1.74%)", "frame_conc": "1091 / 3742 (29.16%)", "left_conc": "2099 / 3742 (56.09%)", "right_conc": "167 / 3742 (4.46%)", "flav_conc": "FALSE", "stance_conc": "56 / 145 (38.62%)", "var_conc": "56 / 145 (38.62%)"},
@@ -176,5 +143,6 @@ const Aluminium =  [
 {"ID": "2499", "Name": "Atomic Hero #2499", "Element": "Aluminium", "Group": "13", "Background": "'Volcano', 'Night'", "Frame": "Silver Frame", "Image": "QmNt6d5pPjRVZug1tdfYJUAQdVwQSriMp2ZF97Z3tazB3Z", "Left_Item": "Chain", "Right_Item": "Soil Pile", "Flavor": "None", "Stance": "Standing", "Variation": "Aluminium 1", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "31 / 3742 (0.83%)", "frame_conc": "604 / 3742 (16.14%)", "left_conc": "75 / 3742 (2%)", "right_conc": "137 / 3742 (3.66%)", "flav_conc": "FALSE", "stance_conc": "85 / 145 (58.62%)", "var_conc": "85 / 145 (58.62%)"},
 {"ID": "2500", "Name": "Atomic Hero #2500", "Element": "Aluminium", "Group": "13", "Background": "'Salty Plain', 'Day', 'Cloudy'", "Frame": "None", "Image": "QmegPN6vNaoJGqR1Nu4XwuYGB2az9jFaWDR95Kz225AdSm", "Left_Item": "Chain", "Right_Item": "Purple Crystal", "Flavor": "None", "Stance": "Sleeping", "Variation": "Aluminium 2", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "50 / 3742 (1.34%)", "frame_conc": "534 / 3742 (14.27%)", "left_conc": "75 / 3742 (2%)", "right_conc": "20 / 3742 (0.53%)", "flav_conc": "FALSE", "stance_conc": "56 / 145 (38.62%)", "var_conc": "56 / 145 (38.62%)"},
 {"ID": "2501", "Name": "Atomic Hero #2501", "Element": "Aluminium", "Group": "13", "Background": "'Metal', 'Night'", "Frame": "Black Frame", "Image": "QmYn2GFDsxckAku1rFTAn4CuQLU2udzAhNz6RpxjTpJkZ7", "Left_Item": "Soil Pile", "Right_Item": "Charcoal", "Flavor": "None", "Stance": "Standing", "Variation": "Aluminium 1", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "63 / 3742 (1.68%)", "frame_conc": "1091 / 3742 (29.16%)", "left_conc": "137 / 3742 (3.66%)", "right_conc": "164 / 3742 (4.38%)", "flav_conc": "FALSE", "stance_conc": "85 / 145 (58.62%)", "var_conc": "85 / 145 (58.62%)"},
-{"ID": "2502", "Name": "Atomic Hero #2502", "Element": "Aluminium", "Group": "13", "Background": "'Grass', 'Night', 'Starry'", "Frame": "White Frame", "Image": "QmXGvy1mqRc1qCpNNb9xLfYBXfdiag9sCjNZhwVX2idz4N", "Left_Item": "Flower", "Right_Item": "Soil Pile", "Flavor": "None", "Stance": "Sleeping", "Variation": "Aluminium 2", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "36 / 3742 (0.96%)", "frame_conc": "1203 / 3742 (32.15%)", "left_conc": "163 / 3742 (4.36%)", "right_conc": "137 / 3742 (3.66%)", "flav_conc": "FALSE", "stance_conc": "56 / 145 (38.62%)", "var_conc": "56 / 145 (38.62%)"},
+{"ID": "2502", "Name": "Atomic Hero #2502", "Element": "Aluminium", "Group": "13", "Background": "'Grass', 'Night', 'Starry'", "Frame": "White Frame", "Image": "QmXGvy1mqRc1qCpNNb9xLfYBXfdiag9sCjNZhwVX2idz4N", "Left_Item": "Flower", "Right_Item": "Soil Pile", "Flavor": "None", "Stance": "Sleeping", "Variation": "Aluminium 2", "elem_conc": "145 / 3742 (3.87%)", "bg_conc": "36 / 3742 (0.96%)", "frame_conc": "1203 / 3742 (32.15%)", "left_conc": "163 / 3742 (4.36%)", "right_conc": "137 / 3742 (3.66%)", "flav_conc": "FALSE", "stance_conc": "56 / 145 (38.62%)", "var_conc": "56 / 145 (38.62%)"}
 ]
+)}

@@ -1,9 +1,14 @@
-
+import Link from 'next/link'
 
 export default function footer() {
   return (
-    <footer>
-      <a href='https://theatomicgallery'>The Atomic Gallery</a> is a tribute to <a href='https://theatomicheroes.com'>The Atomic Heroes</a>. All character copyrights are owned by Diatomic AB - The Atomic Heroes 2021.
+    <footer className="flex items-center justify-center w-full h-24 border-t">
+      <Link href='https://theatomicgallery'>The Atomic Gallery</Link>
+      {" "} 
+      is a tribute to 
+      {" "}
+      <Link href='https://theatomicheroes.com'>The Atomic Heroes</Link>. 
+      All character copyrights are owned by Diatomic AB - The Atomic Heroes 2021.
     </footer>
   )
 }

@@ -1,12 +1,23 @@
+import Image from 'next/image'
+
+import Header from '../components/header'
+import Footer from '../components/footer'
+
 const Hero = ({ results: query }) => {
   return (
     <div>
+      <Header />
         {query.map((q, index) => (
-            <div className="container mx-auto" key={index}>
+            <div className="container mx-auto flex justify-center" key={index}>
               <div className="md:w-1/2 p-4">
-                <div className="p-6 rounded-lg border border-grey-50">
-                  <img className="rounded-full w-full object-cover object-center mb-6" src={"https://ipfs.blockfrost.dev/ipfs/" + q.Image} alt="hero/minion image" />
-                  <h3 className="tracking-widest text-blue-400 text-xl text-center font-medium title-font">{q.Name}</h3><br/>
+                <div className="p-6 rounded-lg border border-grey-50 grid justify-center">
+                  <Image className="rounded-full w-full object-cover mb-6" 
+                  src={"https://ipfs.blockfrost.dev/ipfs/" + q.Image} 
+                  height='600vw'
+                  width='600vw'
+                  alt={q.Name}
+                />
+                  <h3 className="tracking-widest text-blue-400 text-3xl text-center font-medium title-font">{q.Name}</h3><br/>
                   <table>
                     <tbody>
                       <tr>
@@ -59,6 +70,7 @@ const Hero = ({ results: query }) => {
               </div>
             </div>
         ))}
+        <Footer />
     </div>
   )
 }

@@ -1,22 +1,27 @@
-import {useState} from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import Header from '../components/header'
+import Footer from '../components/footer'
 
 const Hero = ({ results: query }) => {
 
-  const [page, setPage] = useState(1)
-
   return (
     <div>
+      <Header />
+
         {query.map((element, index) => (            
             <div className="container mx-auto flex flex-wrap" key={index}>
               {element.map((q, index) => (
               <div key={index} className="lg:w-1/3 md:w-1/2 p-4">
+                
                 <div className="p-6 rounded-lg border border-grey-50">
+                <Link href={`/heroes/${q.ID}`} passHref>
                   <Image className="rounded-full w-full object-cover object-center mb-6" 
                     src={"https://ipfs.blockfrost.dev/ipfs/" + q.Image} 
                     height='400vw'
                     width='400vw'
                     alt={q.Name} />
+                </Link>
                   <h3 className="tracking-widest text-blue-400 text-xl text-center font-medium title-font">{q.Name}</h3><br/>
                   <table>
                     <tbody>
@@ -68,19 +73,20 @@ const Hero = ({ results: query }) => {
                   </table>
                 </div>
               </div>
+              
               ))}
             </div>
           ))}
+          <Footer />
     </div>
   )
 }
 
-export async function getServerSideProps(context, pagination) {
+export async function getServerSideProps(context) {
   const { id } = context.query
-  const page = pagination
-  const res = await fetch(`http://localhost:3000/api/elements/${id}?page=1`)
+  const res = await fetch(`http://localhost:3000/api/elements/${id}`)
   const json = await res.json()
-  const tokens = [json.tokens]
+  const tokens = [json]
   return {
       props: {
           results: tokens,

@@ -2,7 +2,6 @@ import {useState} from 'react'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Header from './components/header'
-import Card from './components/card'
 import Footer from './components/footer'
 import {options} from '../src/options'
 
@@ -10,7 +9,6 @@ export default function Home() {
 
   const [token, setToken] = useState("")
   const [value, setValue] = useState("default")
-  const [elemArray, setElemArray] = useState("")
   const router = useRouter()
 
   const preventDefault = f => e => {
@@ -21,21 +19,21 @@ export default function Home() {
   const handleParam = setToken => e => setToken(e.target.value)
 
   const tokenButtonClick = preventDefault(() => {
+    if(isNaN(token)) {
+      alert("Please enter an element ID number to view the token")
+      return
+    }
     router.push({
       pathname: `/heroes/${token}`
     })
   })
 
-  function findElement(elem) {
-    return elem.name === value
-  }
-
-  // function elemButtonClick() {
-  //   setElemArray((prevState) => ({
-  //     ...prevState,
-  //     elemArray: options.find(findElement) }))
-  //   console.log(value, elemArray);
-  // };
+  function elemButtonClick() {
+    router.push({
+      pathname: `elements/${value}`
+    })
+    console.log(value);
+  };
 
   return (
     <div>
@@ -49,7 +47,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="container px-5 py-24 mx-auto ">
+        <main className="container px-5 py-12 mx-auto ">
           <div>
             <form>
               <label className="text-gray-700">Element ID Number:</label>
@@ -58,19 +56,19 @@ export default function Home() {
                 value={token}
                 onChange={handleParam(setToken)}
                 ></input>
-              <div className="mb-2">
+              <span className="mb-2 flex justify-end">
                 <button className="px-5 py-3 rounded-md text-sm font-medium text-gray-700 border border-gray-300 shadow-sm hover:text-indigo-400 hover:border-indigo-300 hover:ring hover:ring-indigo-200 hover:ring-opacity-50"
                   onClick={tokenButtonClick}>
                   Search
                 </button>
-              </div>
+              </span>
             </form>
             
             <label className="block">
               <span className="text-gray-700">Select</span>
               <select className="form-select block w-full my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
                 value={value}
-                onChange={(e) => {setValue(e.target.value)}}
+                onChange={handleParam(setValue)}
               >
                 <option disabled hidden value='default'> -- Select an Element to View -- </option>
                 {options.map(p => (
@@ -78,24 +76,18 @@ export default function Home() {
                 ))}
              
               </select>
-              {/* <button className="px-5 py-3 rounded-md text-sm font-medium text-gray-700 border border-gray-300 shadow-sm hover:text-indigo-400 hover:border-indigo-300 hover:ring hover:ring-indigo-200 hover:ring-opacity-50"
-                onClick={elemButtonClick}>
-                Filter
-              </button> */}
+              <span className="mb-2 flex justify-end">
+                <button className="px-5 py-3 rounded-md text-sm font-medium text-gray-700 border border-gray-300 shadow-sm hover:text-indigo-400 hover:border-indigo-300 hover:ring hover:ring-indigo-200 hover:ring-opacity-50"
+                  onClick={elemButtonClick}>
+                  Filter
+                </button>
+              </span>
             </label>           
           </div>
-          
-          <div className="flex flex-wrap -m-4 items-center justify-center">
-
-            <Card />
-
-          </div>
-
         </main>
 
-        <footer className="flex items-center justify-center w-full h-24 border-t">
+        
           <Footer/>
-        </footer>
       </div>
     </div>
   )
