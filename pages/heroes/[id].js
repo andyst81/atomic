@@ -63,16 +63,26 @@ const Hero = ({ results: query }) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { id } = context.query
-  const res = await fetch(`http://localhost:3000/api/heroes/${id}`)
-  const json = await res.json()
-  const token = [json]
+export async function getStaticPaths() {
+
   return {
-      props: {
-          results: token,
-      },
+    paths: [
+      { results: { id: '1' }},
+      { results: { id: '2' }},
+    ]
   }
 }
+
+// export async function getServerSideProps(context) {
+//   const { id } = context.query
+//   const res = await fetch(`http://localhost:3000/api/heroes/${id}`)
+//   const json = await res.json()
+//   const token = [json]
+//   return {
+//       props: {
+//           results: token,
+//       },
+//   }
+// }
 
 export default Hero

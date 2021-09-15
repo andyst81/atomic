@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import Image from 'next/image'
 
 const Hero = ({ results: query }) => {
@@ -74,9 +73,22 @@ const Hero = ({ results: query }) => {
   )
 }
 
-export async function getServerSideProps(context, pagination) {
-  const { id } = context.query
-  const page = pagination
+
+
+export async function getStaticPaths() {
+
+  return {
+    paths: [
+      { params: { id: 'Hydrogen' }},
+      { params: { id: 'Helium' }},
+    ],
+
+    fallback: false
+  }
+}
+
+export async function getStaticProps(context) {
+  const {id} = context.query
   const res = await fetch(`http://localhost:3000/api/elements/${id}`)
   const json = await res.json()
   const tokens = [json]
