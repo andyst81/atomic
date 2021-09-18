@@ -85,9 +85,7 @@ export default function Home() {
             </label>           
           </div>
         </main>
-
-        
-          <Footer/>
+        <Footer/>
       </div>
     </div>
   )
