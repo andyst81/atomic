@@ -20,7 +20,7 @@ const Hero = ({ results: query }) => {
 
 export async function getServerSideProps(context) {
   const { id } = context.query
-  const res = await fetch(`http://localhost:3000/api/heroes/${id}`)
+  const res = await fetch(`${process.env.SERVER_URL}api/heroes/${id}`)
   const json = await res.json()
   const token = [json]
   return {

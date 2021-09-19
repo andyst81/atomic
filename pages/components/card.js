@@ -66,7 +66,7 @@ export default function Card(q) {
   function setOtherColor(otherConc) {
     let other = otherConc.split(' ')[3]
     other = other.replace(/[^0-9.]/g, '')
-    console.log(other)
+    // console.log(other)
     if (other >= 42){
       return 'text-gray-800'
     } else if (other >= 30) {
