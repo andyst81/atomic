@@ -1,6 +1,6 @@
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Card from '../components/card'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
+import Card from '../../components/card'
 
 const Element = ({ token }) => {
 
