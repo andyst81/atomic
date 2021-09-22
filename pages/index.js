@@ -1,8 +1,8 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import Header from '../components/header'
-import Footer from '../components/footer'
+import Header from '../src/components/header'
+import Footer from '../src/components/footer'
 import {options} from '../src/options'
 
 export default function Home() {

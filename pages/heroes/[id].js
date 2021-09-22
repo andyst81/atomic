@@ -1,6 +1,6 @@
-import Card from '../../components/card'
-import Header from '../../components/header'
-import Footer from '../../components/footer'
+import Card from '../../src/components/card'
+import Header from '../../src/components/header'
+import Footer from '../../src/components/footer'
 
 const Hero = ({ token }) => {
   // console.log(token)
