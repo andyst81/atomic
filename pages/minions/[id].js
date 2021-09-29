@@ -1,9 +1,9 @@
-import Card from '../../src/components/card'
+import MinionCard from '../../src/components/minion'
 import Header from '../../src/components/header'
 import Key from '../../src/components/key'
 import Footer from '../../src/components/footer'
 
-const Hero = ({ token }) => {
+const Minion = ({ token }) => {
   // console.log(token)
   return (
     <div>
@@ -14,7 +14,7 @@ const Hero = ({ token }) => {
       {token.map((q, index) => (
           <div className="container mx-auto flex justify-center" key={index}>
             <div className="md:w-1/2 p-4">
-              <Card {...q=q} />
+              <MinionCard {...q=q} />
             </div>
           </div>
       ))}
@@ -24,12 +24,12 @@ const Hero = ({ token }) => {
 }
 
 export async function getStaticPaths() {
-  const result = await fetch(`${process.env.SERVER_URL}/api/heroes`)
-  const heroes = await result.json()
+  const result = await fetch(`${process.env.SERVER_URL}/api/minions`)
+  const minions = await result.json()
 
-  const paths = heroes.map((hero) => {
+  const paths = minions.map((minion) => {
     return {
-      params: { id: hero.ID }
+      params: { id: minion.ID }
       } 
     }
   )
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // const { id } = context.query
-  const res = await fetch(`${process.env.SERVER_URL}api/heroes/${params.id}`)
+  const res = await fetch(`${process.env.SERVER_URL}api/minions/${params.id}`)
   const json = await res.json()
   const token = [json]
 
@@ -60,7 +60,7 @@ export async function getStaticProps({ params }) {
 // export async function getServerSideProps(context) {
 //   const { id } = context.query
 //   try {
-//     const res = await fetch(`${process.env.SERVER_URL}api/heroes/${id}`)
+//     const res = await fetch(`${process.env.SERVER_URL}api/minions/${id}`)
 //     const json = await res.json()
 //     const token = [json]
 //     return {
@@ -73,4 +73,4 @@ export async function getStaticProps({ params }) {
 //   }
 // }
 
-export default Hero
+export default Minion
