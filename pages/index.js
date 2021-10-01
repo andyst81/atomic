@@ -24,17 +24,21 @@ export default function Home() {
   const handleParam = setToken => e => setToken(e.target.value)
 
   const tokenButtonClick = preventDefault(() => {
-    setTButton(true)
-    if(isNaN(token)) {
+    if(token == "") {
       alert("Please enter an element ID number to view the token")
       return
     }
+    setTButton(true)
     router.push({
       pathname: `/${collection}/${token}`
     })
   })
 
   function elemButtonClick() {
+    if (value == "default") {
+      alert("Please select an element from the dropdown")
+      return
+    }
     setVButton(true)
     router.push({
       pathname: `elements/${collection}/${value}`
@@ -60,7 +64,7 @@ export default function Home() {
             <br />
             <label className="block text-gray-700">
                 <span className="text-gray-900">Select the collection you would like to view:</span>
-                <select className="form-select block w-full my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                <select className="form-select my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   onChange={handleParam(setCollection)}  
                 >
                   <option value='heroes'>The Atomic Heroes</option>
@@ -70,7 +74,8 @@ export default function Home() {
             <br/>
             <form>
               <label className="text-gray-700">Element ID Number:</label>
-              <input type='text' className="my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              <input className="my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                type='number'
                 name='q'
                 value={token}
                 onChange={handleParam(setToken)}
@@ -91,7 +96,7 @@ export default function Home() {
             
             <label className="block">
               <span className="text-gray-700">Select</span>
-              <select className="form-select block w-full my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+              <select className="form-select my-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
                 value={value}
                 onChange={handleParam(setValue)}
               >
