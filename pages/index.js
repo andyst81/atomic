@@ -55,9 +55,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <Head>
           <title>The Atomic Heroes - Token Viewer and Rarities</title>
-          <link rel="icon" href="/favicon.ico" />
         </Head>
-
         <main className="container px-5 py-12 mx-auto ">
           <div>
             <Key />
